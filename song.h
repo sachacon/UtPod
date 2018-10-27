@@ -1,25 +1,26 @@
 // header class specification file for the song class 
+#include <string>
 
 class Song
 {
     private:
-        char title;
-        char artist;
+        string title;
+        string artist;
         int size;
  
     public:
-        Song();
+        Song(string artist, string title, string size);
         
-        char getTitle(){
+        string getTitle(){
             return title;
         }
-        char getArtist(){
+        string getArtist(){
             return artist;
         }
         int getSize(){
-	    return(size);
+	    return size;
         }
 	
-	~Song();
+     //	~Song();
 };
 
