@@ -6,31 +6,23 @@ using namespace std;
 
 int main(){
     cout << "Hello World" << endl;
+    // Song class creation is working 
+    // get instance variable methods are working
+    // set instance variable methods are working 
+    // == class operator is working 
 
     // Test song class implementation
-    Song s1("Queen", "Bohemian Rhapsody", 24);
-    cout << s1.getArtist() << endl << s1.getTitle() << endl << s1.getSize() << endl;
+    Song s1("AAA", "Back In Black", 44);
+    cout << s1.getArtist() << "  " << s1.getTitle() << "  " << s1.getSize() << endl;
 
-    Song s2("ACDC", "Back in Black", 20);
-    cout << s2.getArtist() << endl << s2.getTitle() << endl << s2.getSize() << endl;
-
-    s1.setArtist("Not Queen");
-    s1.setTitle("Not Bohemian Rhapsody");
-    s1.setSize(104);
-    cout << s1.getArtist() << endl << s1.getTitle() << endl << s1.getSize() << endl;
+    Song s2("ACDC", "Back In Black", 44);
+    cout << s2.getArtist() << "  " << s2.getTitle() << "  " << s2.getSize() << endl;
 
     // Test song class operators
-    if(s1 == s2){
-	cout << "s1 is equal to s2" << endl;
+    if(s1 < s2){
+	cout << "s1 is less than s2" << endl;
     }else{
-	cout << "s1 is not equal to s2" < endl;
-    }
-
-    s1.setArtist("ACDC");
-    s1.setTitle("Back in Black");
-    s1.setSize(20);
-    if(s1 == s2){
-	cout << "s1 is equal to s2" << endl;
+	cout << "s1 is not less than s2" << endl;
     }
 
 }

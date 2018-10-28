@@ -25,9 +25,9 @@ class Song
         int getSize() const;
 
 	// Overload Operators for Sorting 
-	bool operator >(Song const &rhs);
+	bool operator >(Song const &rhs);     // song is greater if comes later in the alphabet or greater size
 	bool operator ==(Song const &rhs);
-	bool operator <(Song const &rhs);
+	bool operator <(Song const &rhs);     // song is less than if comes before in alphabet or greater size
 
         // ~Song();
 };

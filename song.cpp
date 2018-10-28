@@ -44,18 +44,29 @@ int Song::getSize() const {
 
 // Implementation of song class operators
 // rhs is an object so use dot operator
-// > operator means first song is greater than second,  
+// > operator means first song is greater than second
 bool Song::operator >(Song const &rhs){
-    if (artist < rhs.artist){
+    if (artist > rhs.artist){
 	return (true);
     }
-    else if (title < rhs.title){
-	return (true);
+    else if (artist == rhs.artist){	// first song == to second, try title
+	if (title > rhs.title){
+	    return (true);
+	}
+	else if (title == rhs.title){
+	    if (size > rhs.size){
+		return (true);
+	    }
+	    else{
+		return (false);  // first song is either equal, less than second, > is false
+	    }
+	}
+	else{
+	    return (false);	// first song comes earlier in alphabet than second, > is false
+	}
     }
-    else if (size < rhs.size){
-	return (true);
-    }else{
-	return (false);
+    else{
+	return (false);		// first song comes earlier in alphabet than second, > is false
     }
 }
 
@@ -66,18 +77,30 @@ bool Song::operator ==(Song const &rhs){
 }
 
 bool Song::operator <(Song const &rhs){
-    if (artist > rhs.artist){
+    if (artist < rhs.artist){
 	return (true);
     }
-    else if (title > rhs.title){
-	return (true);
+    else if (artist == rhs.artist){
+	if (title < rhs.title){
+	    return (true);
+	}
+	else if (title == rhs.title){
+	    if (size < rhs.size){
+		return (true);
+	    }
+	    else{
+		return (false);
+	    }
+	}
+	else{
+	    return (false);
+	}
     }
-    else if (size > rhs.size){
-	return (true);
-    }else{
+    else{
 	return (false);
     }
 }
+ 
 
 
 
