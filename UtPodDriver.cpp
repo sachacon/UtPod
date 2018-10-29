@@ -20,7 +20,9 @@ int main(){
     tPod.addSong(s11);
     tPod.addSong(s12);
     tPod.showSongList(); 
-    cout << "Remaining Memory - " << tPod.getRemainingMemory() << endl; 
+    cout << "Remaining Memory - " << tPod.getRemainingMemory() << endl << endl; 
+    
+	/*
     // Test song class implementation
     Song s1("Queen", "Bohemian Rhapsody", 22);
     cout << s1.getArtist() << "  " << s1.getTitle() << "  " << s1.getSize() << endl;
@@ -34,6 +36,6 @@ int main(){
     }else{
 	cout << "s1 is not less than s2" << endl;
     }
-	
+	*/	
 }
 

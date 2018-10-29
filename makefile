@@ -4,11 +4,14 @@
 # make (without arguments) executes first rule in file
 # Ideally, one target for every object file and a target for final binary. 
 
-flood_fill: stack312_ll.o driver.o
-	c99 -o flood_fill stack312_ll.o driver.o
+final: UtPodDriver.o UtPod.o song.o
+	g++ -otest UtPodDriver.o UtPod.o song.o
 
-stack312_ll.o: stack312_ll.c
-	c99 -c stack312_ll.c
+driver: UtPodDriver.cpp UtPod.h song.h
+	g++ -c UtPod_Driver.cpp
 
-driver.o: driver.c
-	c99 -c driver.c
+UtPod.o: UtPod.cpp UtPod.h song.h
+	g++ -c tPod.cpp
+
+song.o: song.cpp song.h
+	g++ -c song.cpp
