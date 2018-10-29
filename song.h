@@ -1,4 +1,6 @@
-// header class specification file for the song class 
+// header class specification file for the song class
+#ifndef SONG_H
+#define SONG_H 
 #include <string>
 using namespace std;
 
@@ -31,4 +33,5 @@ class Song
 
         // ~Song();
 };
+#endif
 
