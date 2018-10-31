@@ -57,6 +57,7 @@ int UtPod::removeSong(Song const &s){
 	    delete p;
 	    songs = NULL;
 	}
+
 	// go through list, and delete song node
 	// go until first instance of song, then stop
 	else{	
@@ -72,17 +73,54 @@ int UtPod::removeSong(Song const &s){
 	    }
 	}
     }
-    // return based upon success
+
+    // return code based upon success
     if(found){
-	return(NOT_FOUND);
-    }else{
 	return(SUCCESS);
+    }else{
+	return(NOT_FOUND);
     }
 }
 
 void UtPod::shuffle(){
-   // shuffle in linked list in random order
-   SongNode *p;
+    // shuffle in linked list in random order
+    // find number of songs in the list
+    SongNode *p = songs;
+    int song_count = 0, i = 0, node_count = 0;
+    if(songs != NULL){
+	while(p != NULL){
+	   song_count++;
+	   p = p->next;
+	} 
+    }
+   
+    // if there's more than 2 songs, swap songs 
+    if(song_count > 2){
+	Song temp; 
+	SongNode *n1, *n2;
+ 	long node1, node2;
+        unsigned int currentTime = (unsigned)time(0);
+        srand(currentTime);
+	for(i = 0; i < 3; i++){
+            node1 = (rand() % song_count);
+	    node2 = (rand() % song_count);
+	    cout << node1 << " " << node2 << endl;	    
+	    p = songs;
+	    while(p != NULL){
+		if(node_count == node1){
+		    n1 = p;
+		}
+		if(node_count == node2){
+	 	    n2 = p;  
+		}
+		node_count++;
+		p = p->next;	
+	    }
+	    temp = n1->s;
+	    n1->s = n2->s;
+	    n2->s = temp;	
+	}	
+    }
 }
 
 void UtPod::showSongList(){
@@ -102,8 +140,37 @@ void UtPod::showSongList(){
 }
 
 void UtPod::sortSongList(){
-   // sort song list from artist, title, then size from least to greatest
-
+    // sort song list from artist, title, then size from least to greatest
+    SongNode *p = songs; 
+    int song_count = 0;
+    while(p != NULL){
+	song_count++;
+	p = p->next;
+    }
+    if(song_count < 3){
+	return;
+    }
+    else{
+        bool sorted = false;
+        SongNode *current_song, *next_song;
+        Song temp;
+        while(!sorted){
+	    sorted = true;
+	    current_song = songs;
+	    next_song = songs;
+	    next_song = next_song->next;
+	    while(next_song != NULL){
+	        if(current_song->s > next_song->s){
+		    temp = current_song->s;
+		    current_song->s = next_song->s;
+		    next_song->s = temp;
+		    sorted = false;	   
+	        }
+	        next_song = next_song->next;
+	        current_song = current_song->next;
+    	    }
+        }
+    }
 }
 
 void UtPod::clearMemory(){
@@ -133,7 +200,6 @@ int UtPod::getRemainingMemory(){
 // Destructor calls clear memory function
 UtPod::~UtPod(){
     clearMemory();
-    cout << "Clearing UtPod" << endl;
 }
 
 
