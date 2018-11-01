@@ -61,21 +61,26 @@ int UtPod::removeSong(Song const &s){
 	}
 	// go through list, and delete song node
 	// go until first instance of song, then stop
-	else{
+    	else{
+	    // >1 song, first song matches
 	    if(p->s == s){
 		songs = p->next;
 		delete p;
 		found = true;
 	    }
+	    p = songs;
 	    SongNode *tail = p;
 	    p = p->next;
+	    // check if the last node matches 
 	    while(p != NULL && !found){
 		if(p->next == NULL && p->s == s){
 		    tail->next = NULL;
+		    delete p;
+		    p = tail;
 		    found = true;    
 		}
 		p = p->next;
-		tail = tail->next;
+    		tail = tail->next;
 	    }
 	    p = songs;	    
 	    tail = p;
@@ -86,7 +91,7 @@ int UtPod::removeSong(Song const &s){
 		    delete p;
 		    p = tail->next;
 		    found = true;
-	        }
+    	        }
 		tail = tail->next; 
 	        p = p->next;
 	    }
@@ -205,6 +210,7 @@ void UtPod::clearMemory(){
 	delete p;
 	p = next;
     }
+    songs = NULL;
 }
 
 int UtPod::getRemainingMemory(){
